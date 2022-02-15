@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./hw1.css" />
+</head>
+<body>
+
+    <header class="flex-wrap flex-middle">
+        <div> <a href="./index.html">Home</a></div>
+        <div> <a href="./404.html">Explore</a></div>
+        <div> <a href="./404.html">Contact</a></div>
+    </header>
+
+    
+    <!-- Content here -->
+    <div class="banner">
+        <div class="banner-img" ></div>
+        <div class="banner-text">LA -The City of Angels </div>
+    </div>
+    
+    
+    <!-- section2 -->
+    <section class="section" id="section2">
+        <div class="container">
+            <div class="card-container"></div>
+        </div>
+        
+    </section>
+
+    <!-- section3 -->
+    <section class="section" id="section3">
+
+        <div class="container">
+            <div class="card-container"></div>
+        </div>
+        
+
+    </section>
+
+    <!-- section4 -->
+    <section class="section" id="section4">
+
+        <div class="container">
+            
+        </div>
+        
+    </section>
+
+        
+    
+    <footer>
+
+        <div class="container">
+            <div class="left">
+                <div class="box">
+                    <p> Tip the world over on its side and everything loose will land <br/> in Los Angeles </p>
+                    <p> - Frank Lloyd Wright</p>
+                </div>
+                
+            </div>
+
+            <div class="right">
+                <p class="h1"> Designed By</p>
+                <p> Neha Udeshi</p>
+                <p> nudeshi@usc.edu <br>(+1)202 555 0133</p>
+            </div>
+            
+        </div>
+
+      
+    </footer>
+
+
+     <script>
+        const url = 'https://github.com/JacobWeng/JacobWeng.github.io/blob/main/hw1wxx1997/data.json'
+        fetch(url).then(res => {
+            if (res.status === 200) {
+                res.json().then(res => {
+
+                    const { section2, section3, section4 } = res
+
+                    let tempSection2='' , tempSection3='', tempSection4=''
+
+
+                    // tempSection2
+                    for (let index = 0; index < section2.length; index++) {
+                        const element = section2[index];
+                        let temp = ` <div class="card-item">
+                                        <img src="./img/${element.image}" />
+                                        <h1 class="card-text">${element.title}</h1>
+                                        <p>${element.text}</p>
+                                    </div>`
+                        tempSection2 = tempSection2 + temp
+                    }
+
+                    // tempSection3
+
+                    for (let index = 0; index < section3.text.length; index++) {
+                        const element = section3.text[index];
+                        let temp = ` <p>${element}</p>`
+                        tempSection3 = tempSection3 + temp
+                    }
+
+                    tempSection3 = `<div class="section3-text">
+                                        ${tempSection3}
+                                    </div>
+                                    <img src="./img/${section3.image}" alt="">`
+
+
+                    
+                     tempSection4 = `<div class="card-container">
+                                        <img src="./img/${section4[0].image}" alt="">
+                                        <div class="section4-text right">
+                                            <h1>${section4[0].heading}</h1>
+                                            <p>${section4[0].text}</p>
+                                        </div>
+                                        
+                                    </div>
+
+                                    <div class="card-container">
+                                        <div class="section4-text left">
+                                            <h1>${section4[1].heading}</h1>
+                                            <p>${section4[1].text}</p>
+                                        </div>
+                                        <img src="./img/${section4[1].image}" alt="">
+                                    </div>`
+
+
+                    document.querySelector('#section2 .card-container').innerHTML = tempSection2
+                    document.querySelector('#section3 .card-container').innerHTML = tempSection3
+                    document.querySelector('#section4 .container').innerHTML = tempSection4
+                })
+            }
+        })
+    </script>
+    
+</body>
+</html>
